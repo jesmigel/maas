@@ -1,0 +1,15 @@
+---
+- name: Print return information from the previous task
+  ansible.builtin.debug:
+    msg: "{{host_ip}} {{user_id}} {{user_pass}} {{user_email}} {{gh_id}}"
+  tags:
+  - clustering
+  - master
+
+- name: Bootstrap MaaS
+  ansible.builtin.command:
+    cmd: "{{ item }}"
+  loop: "{{ maas_bootstrap_cmd }}"
+  tags:
+  - maas
+  - bootstrap

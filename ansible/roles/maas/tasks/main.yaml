@@ -1,0 +1,18 @@
+---
+# # MANUAL
+# # - Import Images
+# # - Enable DHCP on vlan
+# # Get API key
+# sudo maas apikey --username $user_id
+
+- name: Update and Install Binaries
+  import_tasks: apt.yaml
+
+- name: Initialise NTP configuration
+  import_tasks: datetime.yaml
+
+- name: Install SNAP Binaries
+  import_tasks: snap.yaml
+
+- name: Bootstrap MaaS
+  import_tasks: bootstrap.yaml

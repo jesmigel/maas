@@ -1,0 +1,10 @@
+
+- name: "Install snap {{ snap_binaries }}"
+  community.general.snap:
+    name: "{{ item.name }}"
+    channel: "{{ item.channel }}"
+    classic: "{{ item.classic }}"
+  loop: "{{ snap_binaries }}"
+  notify: "{{ snap_handlers_list | default([]) }}"
+  tags:
+  - snap_install

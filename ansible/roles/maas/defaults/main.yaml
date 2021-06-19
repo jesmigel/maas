@@ -1,0 +1,35 @@
+apt_binaries:
+- gnupg
+- software-properties-common
+- curl
+- ntp
+- make
+- python3-venv
+- gcc
+- zsh
+- snap
+
+apt_handler_list:
+- restart ntp
+
+# DATETIME
+timezone: "Australia/Melbourne"
+
+snap_binaries:
+- name: maas-test-db
+  channel: 2.9/stable
+  classic: no
+- name: maas
+  channel: 2.9/stable
+  classic: no
+
+snap_handlers_list: []
+
+host_ip: ""
+user_id: ""
+user_pass: ""
+user_email: ""
+gh_id: ""
+maas_bootstrap_cmd:
+- maas init region+rack --database-uri maas-test-db:/// --maas-url http://{{ host_ip }}:5240/MAAS
+- maas createadmin --username {{ user_id }} --password {{ user_pass }} --email {{ user_email }} --ssh-import gh:{{ gh_id }}
